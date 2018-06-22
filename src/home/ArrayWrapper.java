@@ -76,8 +76,10 @@ public class ArrayWrapper {
     // remove by index
     public static void remove(int index) {
         if (index < arr.length) {
-            System.arraycopy(arr, index + 1, arr, index, arr.length - index - 1);
-            arr[arr.length - 1] = 0;
+            int[] tmpArr = new int[arr.length - 1];
+            System.arraycopy(arr, 0, tmpArr, 0, index);
+            System.arraycopy(arr, index + 1, tmpArr, index, arr.length - index - 1);
+            arr = tmpArr;
             System.out.println("And successfully removed");
         } else {
             throw new ArrayIndexOutOfBoundsException();
@@ -227,6 +229,43 @@ public class ArrayWrapper {
             }
         }
         return 0;
+    }
+
+    // New sub search
+    public static int searchSubArrayPro(int[] subArray) {
+        int quantityOfFirstElemet = ArrayWrapper.searchContainsQuantity(subArray[0]);
+        int quantityOfLastElement = ArrayWrapper.searchContainsQuantity(subArray[subArray.length - 1]);
+        if (quantityOfFirstElemet > 0 && quantityOfLastElement > 0) {
+            for (int i = 0; i <= quantityOfFirstElemet; i++) {
+                int firstElementIndex = ArrayWrapper.searchIterality(subArray[0]);
+                int lastElementIndex = ArrayWrapper.searchIterality(subArray[subArray.length - 1]);
+                if (lastElementIndex - firstElementIndex == subArray.length - 1) {
+                    boolean isEqual = ArrayWrapper.checkIt(subArray, arr, firstElementIndex);
+                    if (isEqual == true) {
+                        return firstElementIndex;
+                    } else {
+                        ArrayWrapper.remove(firstElementIndex);
+                        ArrayWrapper.remove(lastElementIndex - 1);
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    // NEW one Overload
+    private static boolean checkIt(int[] subArray, int[] tmp, int firstElement) {
+        int count = 0;
+        for (int i = 0; i < subArray.length; i++) {
+            if (tmp[firstElement + i] == subArray[i]) {
+                count++;
+            }
+        }
+        if (count == subArray.length) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // NEW one
