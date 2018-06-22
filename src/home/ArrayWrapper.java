@@ -93,6 +93,22 @@ public class ArrayWrapper {
         System.out.println("And successfully removed");
     }
 
+    // NEW one
+    public static void insert(int value, int index) {
+        if (index == 0) {
+            ArrayWrapper.prepend(0);
+        } else if (index <= arr.length) {
+            int[] tmpArr = new int[arr.length + 1];
+            System.arraycopy(arr, 0, tmpArr, 0, index);
+            System.arraycopy(arr, index, tmpArr, index + 1, arr.length - index - 1);
+            arr = tmpArr;
+            ArrayWrapper.add(index, value);
+            System.out.println("Value successfully inserted");
+        } else {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+    }
+
     public static int searchCorrect(int value) {
         int position = searchBinary(value);
         if (position >= 0) {
@@ -189,7 +205,6 @@ public class ArrayWrapper {
     public static void add(int index, int value) {
         int[] tmp = getArr();
         if (index < tmp.length && index >= 0) {
-            get(index);
             tmp[index] = value;
             arr = tmp;
         }

@@ -10,10 +10,10 @@ public class Test {
         for (int i = 0; i < 11; i++) {
             ArrayWrapper.add(i);
         }
-        ArrayWrapper.set(0,9);
+       /* ArrayWrapper.set(0,9);
         ArrayWrapper.set(2,0);
         ArrayWrapper.set(4,9);
-        ArrayWrapper.set(6,0);
+        ArrayWrapper.set(6,0);*/
 
 
       /*  for (int i = 0; i < 20; i++) {
@@ -25,8 +25,8 @@ public class Test {
             arrTmp[i] = i;
         }*/
 
-        int[] tmp = new int[4];
-        tmp = new int[]{9, 10, 0};
+        /*int[] tmp = new int[4];
+        tmp = new int[]{9, 10, 0};*/
         //System.out.println(Arrays.toString(rr));
         System.out.println(Arrays.toString(ArrayWrapper.getArr()));
         //System.out.println(ArrayWrapper.get(0));
@@ -53,8 +53,9 @@ public class Test {
         //System.out.println(ArrayWrapper.searchSubArray(tmp));
         //System.out.println(Arrays.toString(tmp));
         //ArrayWrapper.removeSubArray(tmp);
-        System.out.println(ArrayWrapper.searchSubArrayPro(tmp));
+        //System.out.println(ArrayWrapper.searchSubArrayPro(tmp));
         //ArrayWrapper.remove( 0);
+        ArrayWrapper.insert(77, 10);
         System.out.println(Arrays.toString(ArrayWrapper.getArr()));
 
     }
